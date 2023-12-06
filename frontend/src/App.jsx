@@ -50,9 +50,14 @@ function App() {
     <BrowserRouter>
       <div>
         <Routes>
-          <Route path='/' 
-            element={user ? <Home /> : <Navigate to='/login' />} 
-            />
+          {/* ERROR PAGE */}
+          <Route 
+            path="*" 
+            element={<ErrorPage />} 
+          />
+          <Route 
+            path='/' 
+            element={user ? <Home /> : <Navigate to='/login' />} />
           {/* PUBLIC ROUTES */}
           <Route 
             path='/login' 
@@ -60,9 +65,7 @@ function App() {
           <Route 
             path='/forgot-password' 
             element={!user ? <ForgotPass /> : <Navigate to='/' />}/>
-          <Route 
-            path='*'
-            element={<ErrorPage />}/>
+            
           {/* ADMIN ROUTES */}
             <Route  
               path='/home' 
