@@ -44,28 +44,28 @@ function Users() {
         <div>
           <AdminSidebar />
         </div>
-          <div className='content'>
-            <div className='area'>
-              <div className="admin-header">
-                <table>
-                  <tr>
-                    <th>Department</th>
-                    <th>Name</th>
-                    <th>Account</th>
-                    <th>UCLM ID#</th>
-                    <th>Date created</th>
-                    <th></th>
-                  </tr>
-                    {users && users.map((head) => (
-                      <UsersDetails
-                        onEditUserClick={toggleEditUserVisibility}
-                        key={head._id} 
-                        head={head}/>
-                    ))}
-                </table>
-              </div>
+        <div className='content'>
+          <div className='area'>
+            <div className="admin-header">
+              <table>
+                <tr>
+                  <th>Department</th>
+                  <th>Name</th>
+                  <th>Account</th>
+                  <th>UCLM ID#</th>
+                  <th>Date created</th>
+                  <th></th>
+                </tr>
+                  {users && users.map((head) => (
+                    <UsersDetails
+                      onEditUserClick={toggleEditUserVisibility}
+                      key={head._id} 
+                      head={head}/>
+                  ))}
+              </table>
             </div>
           </div>
+        </div>
         </div>
         <div>
       </div>

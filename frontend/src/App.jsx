@@ -18,7 +18,7 @@ import EditDeptForm from './pages/Admin/EditDeptForm'
 // head routes
 import HeadHome from './pages/Head/HeadHome'
 
-import {BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import {BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 import './index.scss'
 
@@ -52,7 +52,7 @@ function App() {
         <Routes>
           <Route path='/' 
             element={user ? <Home /> : <Navigate to='/login' />} 
-            errorElement={<ErrorPage />}/>
+            />
           {/* PUBLIC ROUTES */}
           <Route 
             path='/login' 
@@ -60,9 +60,11 @@ function App() {
           <Route 
             path='/forgot-password' 
             element={!user ? <ForgotPass /> : <Navigate to='/' />}/>
-
+          <Route 
+            path='*'
+            element={<ErrorPage />}/>
           {/* ADMIN ROUTES */}
-            <Route 
+            <Route  
               path='/home' 
               element={user ? <Home /> : <Navigate to='/login' />} />
             <Route 
@@ -85,9 +87,9 @@ function App() {
             element={user ? <EditDeptForm /> : <Navigate to='/login' />}/>
 
           {/* HEAD ROUTES */}
-          <Route 
+          {/* <Route 
             path='/'
-            element={isAdmin ? <HeadHome /> : <Navigate to='/login'/>}/>
+            element={user ? <HeadHome /> : <Navigate to='/login'/>}/> */}
         </Routes>
       </div>
     </BrowserRouter>

@@ -9,16 +9,16 @@
   user-select: none;
 }
 
-#root {
-  height: 100%;
-  width: 100%;
-}
+// #root {
+//   width: 100%;
+// }
 
 html,
 body {
-  height: 100%;
   margin: 0;
+  height: 100%;
 }
+
 
 html {
   box-sizing: border-box;
@@ -413,24 +413,23 @@ hr {
 /*----------* MAIN LAYOUT *----------*/
 
 .main-wrapper {
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .sub-wrapper {
+  flex: 1;
   display: flex;
   flex-direction: row;
-  height: 100vh;
 }
 
 .content {
   width: 100%;
-  height: 98%;
   display: flex;
   overflow: hidden;
   margin-right: 1em;
-  margin-bottom: 5em;
+  margin-bottom: 1em;
   flex-direction: row;
   border-radius: 10px;
   background: var(--outlet-bg);
@@ -445,7 +444,6 @@ hr {
 // admin users page section
 .area {
   width: 100%;
-  max-height: 91vh;
 }
 
 .area table {

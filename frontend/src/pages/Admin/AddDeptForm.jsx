@@ -70,51 +70,51 @@ function AddDeptForm() {
         <div>
           <AdminHeader />
         </div>
-      </div>
-      <div className="sub-wrapper">
-        <div>
-          <AdminSidebar />
-        </div>
-        <div className="content">
-          <div className="add-user-form-wrapper">
-            <div className="add-header-content">
-              <div className="add-text-and-back-icon">
-                <div className="back-icon">
-                  <Link to='/departments'><IoIcon.IoArrowBackSharp /></Link>
-                </div>
-                <div>
-                  <h3>Add a new department</h3>
+        <div className="sub-wrapper">
+          <div>
+            <AdminSidebar />
+          </div>
+          <div className="content">
+            <div className="add-user-form-wrapper">
+              <div className="add-header-content">
+                <div className="add-text-and-back-icon">
+                  <div className="back-icon">
+                    <Link to='/departments'><IoIcon.IoArrowBackSharp /></Link>
+                  </div>
+                  <div>
+                    <h3>Add a new department</h3>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="line-header">
-            </div>
-              <div className="edit-content-wrapper">
-              <div 
-                className='admin-form-wrapper' 
-                onSubmit={handleSubmit}
-                >
-                  <form id='admin-add-user-form'>
-                    <label>Department name</label>
-                    
-                    <Select
-                      options={sortedOptions}
-                      onChange={(selectedOption) => setDepartmentName(selectedOption.value)}
-                      value={sortedOptions.find(option => option.value === departmentName)}
-                    />
+              <div className="line-header">
+              </div>
+                <div className="edit-content-wrapper">
+                <div 
+                  className='admin-form-wrapper' 
+                  onSubmit={handleSubmit}
+                  >
+                    <form id='admin-add-user-form'>
+                      <label>Department name</label>
+                      
+                      <Select
+                        options={sortedOptions}
+                        onChange={(selectedOption) => setDepartmentName(selectedOption.value)}
+                        value={sortedOptions.find(option => option.value === departmentName)}
+                      />
 
-                    <div className='admin-edit-buttons'>
-                      <div>
-                        <Link to='/departments' className='cancel'>Cancel</Link>
+                      <div className='admin-edit-buttons'>
+                        <div>
+                          <Link to='/departments' className='cancel'>Cancel</Link>
+                        </div>
+                        <div>
+                          <button className='save'>Save</button>
+                        </div>
                       </div>
-                      <div>
-                        <button className='save'>Save</button>
-                      </div>
-                    </div>
-                    {error && <div id='admin-add-user-error'>{error}</div>}
-                  </form>
-              </div>
-              </div>
+                      {error && <div id='admin-add-user-error'>{error}</div>}
+                    </form>
+                </div>
+                </div>
+            </div>
           </div>
         </div>
       </div>

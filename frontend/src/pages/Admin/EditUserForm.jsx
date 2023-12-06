@@ -115,23 +115,22 @@ function EditUserForm() {
   }, [id, user])
 
   return (
-    <>
-    {users && users.map((user) => (
-        user._id === id && (
-      <>
-      <div className="main-wrapper">
-        <div>
-          <AdminHeader />
-        </div>
-      </div>  
+  <>
+    <> 
+    <div  className="main-wrapper">
+      <div>
+        <AdminHeader />
+      </div>
       <div className="sub-wrapper">
         <div>
           <AdminSidebar />
         </div>
         <div className="content">
+        {users && users.map((user) => (
+        user._id === id && (
           <form 
+          key={user._id}
           onSubmit={handleSubmit} 
-          key={user._id} 
           className="edit-form-main-wrapper"
           >
           <div className="edit-form-wrapper">
@@ -256,11 +255,12 @@ function EditUserForm() {
             </div>
           </div>
           </form>
+        )
+        ))}
         </div>
       </div>
-      </>
-      )
-      ))}
+    </div>  
+    </>
   </>
   )
 }

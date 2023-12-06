@@ -114,66 +114,66 @@ function EditDeptForm() {
         <div>
           <AdminHeader />
         </div>
-      </div>  
-      <div className="sub-wrapper">
-        <div>
-          <AdminSidebar />
-        </div>
-        <div className="content">
-          <form 
-            key={department._id}
-            onSubmit={handleSubmit}
-            className='edit-form-main-wrapper'
-            >
-              <div className="edit-form-wrapper">
-                <div className="header-content">
-                  <>
-                  <div className="edit-text-and-back-icon">
-                    <div div className='back-icon'>
-                      <Link to='/departments'><IoIcon.IoArrowBackSharp /></Link>
-                    </div>
-                    <div>
-                      <h3>Edit</h3>
-                    </div>
-                  </div>
-                  <div className='edited-time'> 
-                    <span>Last edited: </span>
-                    { format(parseISO(department.updatedAt), "p ") } 
-                      { format(parseISO(department.updatedAt), "MMM. d yyyy") }
-                  </div>
-                  </>
-                </div>
-                <div className='line-header'></div>
-                <div className="edit-content-wrapper">
-                  <div className="edit-content-border">
-                    <div className="edit-content">
-                      <div className="edit-input-wrapper">
-                        <div>
-                          <label>Department Name</label>
-                          <Select
-                            options={sortedDepartments}
-                            onChange={(selectedOption) => setDepartmentName(selectedOption.value)}
-                            value={sortedDepartments.find(option => option.value === departmentName)}
-                          />
-                        </div>
+        <div className="sub-wrapper">
+          <div>
+            <AdminSidebar />
+          </div>
+          <div className="content">
+            <form 
+              key={department._id}
+              onSubmit={handleSubmit}
+              className='edit-form-main-wrapper'
+              >
+                <div className="edit-form-wrapper">
+                  <div className="header-content">
+                    <>
+                    <div className="edit-text-and-back-icon">
+                      <div div className='back-icon'>
+                        <Link to='/departments'><IoIcon.IoArrowBackSharp /></Link>
                       </div>
-                      <div className="admin-edit-buttons">
+                      <div>
+                        <h3>Edit</h3>
+                      </div>
+                    </div>
+                    <div className='edited-time'> 
+                      <span>Last edited: </span>
+                      { format(parseISO(department.updatedAt), "p ") } 
+                        { format(parseISO(department.updatedAt), "MMM. d yyyy") }
+                    </div>
+                    </>
+                  </div>
+                  <div className='line-header'></div>
+                  <div className="edit-content-wrapper">
+                    <div className="edit-content-border">
+                      <div className="edit-content">
+                        <div className="edit-input-wrapper">
                           <div>
-                            <Link to='/departments' className='cancel'>Cancel</Link>
+                            <label>Department Name</label>
+                            <Select
+                              options={sortedDepartments}
+                              onChange={(selectedOption) => setDepartmentName(selectedOption.value)}
+                              value={sortedDepartments.find(option => option.value === departmentName)}
+                            />
                           </div>
-                          <div>
-                          <button className='save'>Save</button>
-                          {error && <div id='admin-add-user-error'>{error}
-                          </div>}
+                        </div>
+                        <div className="admin-edit-buttons">
+                            <div>
+                              <Link to='/departments' className='cancel'>Cancel</Link>
+                            </div>
+                            <div>
+                            <button className='save'>Save</button>
+                            {error && <div id='admin-add-user-error'>{error}
+                            </div>}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-          </form>
-      </div>
-      </div>
+            </form>
+          </div>
+        </div>
+      </div>  
       </>
       )
     ))}
