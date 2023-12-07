@@ -22,6 +22,7 @@ body {
 
 html {
   box-sizing: border-box;
+  --tooltip-bg: rgb(86, 86, 86);
   --secondary-bg: #cfd5df;
   --main-bg-color: #F0F2F5;
   --main-btn-color: #2D5594;
@@ -89,6 +90,10 @@ input:focus {
 }
 
 /*----------* collapsable-sidebar-section *----------*/
+.line {
+  width: 90%;
+  margin-block: 1em;
+}
 .sidebars {
   display: flex;
   flex-direction: row;
@@ -119,13 +124,6 @@ input:focus {
 
 #c-sidebar nav a.active {
   background: var(--sidebar-active-color);
-}
-
-hr {
-  border: none;
-  height: 1px;
-  width: 10em;
-  background-color: rgb(210, 210, 210);
 }
 
 #spacer {
@@ -408,6 +406,17 @@ hr {
     flex-direction: row;
     align-items: center;
 
+    .admin-add-user-or-dept {
+      position: relative;
+    }
+
+    .admin-add-user-or-dept:hover .tooltip {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.25s;
+      transition-delay: 0.5s;
+    }
+
     .admin-add-user-or-dept a,
     .logout-button{
       padding: 8px;
@@ -430,9 +439,8 @@ hr {
   #account-initials  {
     background-color: #2D5594;    
     align-items: end; 
-    padding-inline: .8em;
-    padding-block: .8em;
-    border-radius: 40px;
+    padding: 1em;
+    border-radius: 2em;
     margin-left: 1em;
     position: relative;
 
@@ -441,7 +449,24 @@ hr {
     span {
       font-weight: 500;
       color: white;
+      font-size: 14px;
     }
+  }
+
+  .tooltip {
+    opacity: 0;
+    visibility: hidden;
+    right: -3em;
+    top: 4.3em;
+    white-space: nowrap;
+    border-radius: 6px;
+    position: absolute;
+    color: white;
+    font-size: .8em;
+    padding-inline: 8px;
+    padding-block: 6px;
+    background-color: var(--tooltip-bg);
+    z-index: 999;
   }
 }
 
@@ -455,7 +480,7 @@ hr {
   right: 0;
   top: 55px;
   box-shadow: 0px 0px 10px rgba($color: #000000, $alpha: .2);
-  height: 230px;
+  height: 220px;
   width: 240px;
 
   .modal-wrapper {
@@ -483,7 +508,7 @@ hr {
   .logout,
   .view-profile {
     font-weight: 500;
-    padding-block: 1.4em;
+    padding-block: 1.2em;
     padding-inline: 1em;
     display: flex;
     flex-direction: row;

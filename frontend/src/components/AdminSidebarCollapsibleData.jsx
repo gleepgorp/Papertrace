@@ -4,7 +4,7 @@ import * as GoIcon from 'react-icons/go'
 
 export const AdminSideBarCollapsibleData = [
   {
-    path: "/home",
+    path: "/",
     icon: <GoIcon.GoHome  fontSize="1.2em"/>,
     activeIcon: <GoIcon.GoHomeFill   fontSize="1.2em"/>,
     cName: "sidebar-text"

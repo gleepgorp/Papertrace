@@ -10,13 +10,12 @@ import MainLogo from '../../public/MainLogo.svg'
 import useLogout from '../hooks/useLogout'
 import React, { useState, useEffect, useRef } from 'react'
 
-function AdminHeader({ onAddUserClick, isAddUserVisible, onAddDeptClick, isAddDeptVisible, onHamburgerClick  }) {
+function AdminHeader({ onAddUserClick, isAddUserVisible, onHamburgerClick  }) {
 
   const { logout } = useLogout()
   const { user } = useAuthContext()
   const location = useLocation();
-  const isUsersPath = location.pathname.includes('/users')
-  const iseDeptPath = location.pathname.includes('/departments')
+  const isUsersPath = location.pathname.includes('/head-home')
 
   const [modal, setModal] = useState(false)
   const modalRef = useRef()
@@ -68,26 +67,14 @@ function AdminHeader({ onAddUserClick, isAddUserVisible, onAddDeptClick, isAddDe
       </div>
       <div id="right-section">
           {isUsersPath && (
-            <div className='admin-add-user-or-dept'>
-              <Link 
-                to={isAddUserVisible ? '/users/add' : '/users/add'} onClick={onAddUserClick}>
-                  <PiIcon.PiUserCirclePlusBold />
-              </Link>
+              <div className='admin-add-user-or-dept'>
+                <Link 
+                  to={isAddUserVisible ? '/users/add' : '/users/add'} onClick={onAddUserClick}>
+                    <PiIcon.PiUserCirclePlusBold />
+                </Link>
                 <div className='tooltip'>
-                  <span>Add a new head</span>
+                  <span>Add a new user</span>
                 </div>
-            </div>
-            )}
-            {iseDeptPath && (
-              <div className='admin-add-user-or-dept'> 
-                  <Link
-                    to={isAddDeptVisible ? '/departments/add' : '/departments/add'}
-                    onClick={onAddDeptClick}>
-                      <BsIcon.BsBuildingAdd />
-                  </Link>
-                  <div className='tooltip'>
-                    <span>Add department</span>
-                  </div>
               </div>
             )}
             <div className='user-and-logout-section'>

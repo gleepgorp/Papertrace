@@ -1,8 +1,12 @@
+import HeadMainLayout from './HeadMainLayout'
 import React from 'react'
 
 function HeadHome() {
+
   return (
-    <div>HeadHome</div>
+    <>
+      <HeadMainLayout />
+    </>
   )
 }
 

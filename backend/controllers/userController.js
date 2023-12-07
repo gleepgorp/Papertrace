@@ -4,15 +4,15 @@ const jwt = require('jsonwebtoken')
 
 // login user
 const loginUser = async (req, res) => {
-  const {username, password} = req.body
+  const {username, password, role} = req.body
   
   try {
-    const user = await User.login(username, password,)
+    const user = await User.login(username, password, role)
 
     // creating jwt token 
     const token = createToken(user._id)
 
-    res.status(200).json({user, token})
+    res.status(200).json({user, token, role})
   } catch (error) {
     console.error(error);
     res.status(400).json({error: error.message});
