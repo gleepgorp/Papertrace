@@ -64,13 +64,23 @@ function DepartmentsDetails({department}) {
       </td>
       <td>
         <div>
-          <button onClick={handleDeleteDept}>
-            <HiIcon.HiOutlineTrash />
-          </button>
-          <Link to={`/departments/edit/${department._id}`}>
-            <HiIcon.HiOutlinePencil />
-          </Link>
-        </div>
+          <div className="td-tooltip-wrapper">
+            <button onClick={handleDeleteDept}>
+              <HiIcon.HiOutlineTrash />
+            </button>
+            <div className='td-tooltip'>
+              <span>Delete</span>
+            </div>
+          </div>
+          <div className="td-tooltip-wrapper">
+            <Link to={`/departments/edit/${department._id}`}>
+              <HiIcon.HiOutlinePencil />
+            </Link>
+            <div className='td-tooltip-edit'>
+              <span>Edit</span>
+            </div>
+          </div>
+       </div> 
       </td>
     </tr>
   </>

@@ -1,11 +1,10 @@
-import { Outlet } from 'react-router-dom'
 import HeadHeader from '../../components/HeadHeader'
 import HeadSidebar from '../../components/HeadSidebar'
-import React from 'react'
 
+function HeadInbox() {
 
-function HeadMainLayout() {
   return (
+    <>
     <div className='main-wrapper'>
       <div>
         <HeadHeader />
@@ -15,11 +14,12 @@ function HeadMainLayout() {
           <HeadSidebar />
         </div>
         <div className="content">
-          <Outlet />
+          Home
         </div>
       </div>
     </div>
+    </>
   )
 }
 
-export default HeadMainLayout
+export default HeadInbox

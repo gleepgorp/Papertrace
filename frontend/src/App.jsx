@@ -17,7 +17,8 @@ import Departments from './pages/Admin/Departments'
 import AddDeptForm from './pages/Admin/AddDeptForm'
 import EditDeptForm from './pages/Admin/EditDeptForm'
 // head routes
-import HeadHome from './pages/Head/HeadHome'
+import HeadInbox from './pages/Head/HeadInbox'
+import HeadUsers from './pages/Head/HeadUsers'
 
 import RequireAuth from './components/RequireAuth'
 import { Routes, Route, Navigate } from 'react-router-dom'
@@ -75,8 +76,9 @@ function App() {
           {/* head routes */}
           {role === 'DEPT-HEAD' && (
             <>
-              <Route path='/' element={user ? <HeadHome /> : <Navigate to='/login'/>}/>
-              <Route path='/home' element={user ? <HeadHome /> : <Navigate to='/login'/>}/>
+              <Route path='/' element={user ? <HeadInbox /> : <Navigate to='/login'/>}/>
+              <Route path='/inbox' element={user ? <HeadInbox /> : <Navigate to='/login'/>}/>
+              <Route path='/users' element={user ? <HeadUsers /> : <Navigate to='/login'/>}/>
             </>
           )}
 

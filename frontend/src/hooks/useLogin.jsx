@@ -33,7 +33,7 @@ export const useLogin = () => {
       dispatch({type: 'LOGIN', payload: {user: json, role: json.user.role}})
 
       // navigate to home
-      navigate('/home')
+      navigate('/')
       setIsLoading(false)
     }
   }

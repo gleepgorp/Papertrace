@@ -85,12 +85,24 @@ function UsersDetails({head}) {
         </td>
         <td>
           <div>
-            <button onClick={handleDeleteHead}>
-              <HiIcon.HiOutlineTrash />
-            </button>
-            <Link to={`/users/edit/${head._id}`}>
-              <HiIcon.HiOutlinePencil  />
-            </Link>
+            <div className="td-tooltip-wrapper">
+              <button onClick={handleDeleteHead}>
+                <div>
+                  <HiIcon.HiOutlineTrash />
+                </div>
+              </button>
+              <div className='td-tooltip'>
+                <span>Delete</span>
+              </div>
+            </div>
+            <div className="td-tooltip-wrapper">
+              <Link to={`/users/edit/${head._id}`}>
+                <HiIcon.HiOutlinePencil  />
+              </Link>
+              <div className='td-tooltip-edit'>
+                <span>Edit</span>
+              </div>
+            </div>
           </div>
         </td>
       </tr>
