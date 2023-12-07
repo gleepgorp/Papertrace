@@ -88,6 +88,50 @@ input:focus {
   justify-content: center;
 }
 
+/*----------* collapsable-sidebar-section *----------*/
+.sidebars {
+  display: flex;
+  flex-direction: row;
+}
+
+#c-sidebar {
+  width: 74px;
+  padding-block: 1em;
+}
+
+#c-sidebar nav a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 0px 10px 10px 0px;
+  transition: background 0.1s;
+
+  svg {
+    font-size: 18px;
+  }
+}
+
+#c-sidebar nav a:hover {
+  background: var(--sidebar-hover-color);
+}
+
+
+#c-sidebar nav a.active {
+  background: var(--sidebar-active-color);
+}
+
+hr {
+  border: none;
+  height: 1px;
+  width: 10em;
+  background-color: rgb(210, 210, 210);
+}
+
+#spacer {
+  margin-block: 1em;
+}
+
 /*----------* sidebar-section *----------*/
 
 #sidebar {
@@ -292,6 +336,7 @@ hr {
   #left-and-middle,
   #left-wrapper {
     display: flex;
+    align-items: center;
     flex-direction: row;
 
     #left-section {
@@ -304,7 +349,6 @@ hr {
     }
 
     button {
-      padding: 0;
       border: none;
       padding-inline: .8em;
       padding-block: .5em;
@@ -316,7 +360,7 @@ hr {
       cursor: pointer;
     }
     button:hover {
-      background-color: var(--main-bg-color);
+      background-color: var(--sidebar-hover-color);
     }
 
     button svg {
@@ -390,6 +434,7 @@ hr {
     padding-block: .8em;
     border-radius: 40px;
     margin-left: 1em;
+    position: relative;
 
     cursor: pointer;
 
@@ -397,6 +442,62 @@ hr {
       font-weight: 500;
       color: white;
     }
+  }
+}
+
+.modal {
+  padding: 12px;
+  position: absolute;
+  background-color: white;
+  white-space: nowrap;
+  border-radius: 6px;
+  z-index: 999;
+  right: 0;
+  top: 55px;
+  box-shadow: 0px 0px 10px rgba($color: #000000, $alpha: .2);
+  height: 230px;
+  width: 240px;
+
+  .modal-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  .modal-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+  }
+  .modal-name {
+    font-size: 1.2em;
+  }
+  .modal-role {
+    color: var(--on-white-darker-hover);
+    font-size: .8em;
+  }
+  .modal-btn-wrapper {
+    background-color: var(--on-white-hover);
+    border-radius: 6px;
+  }
+  .logout,
+  .view-profile {
+    font-weight: 500;
+    padding-block: 1.4em;
+    padding-inline: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+    transition: background-color 0.15s;
+  }
+  svg {
+    display: flex;
+  }
+  .logout:hover,
+  .view-profile:hover {
+    background-color: var(--sidebar-hover-color);
+    border-radius: 6px;
   }
 }
 

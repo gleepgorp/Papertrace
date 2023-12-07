@@ -3,6 +3,7 @@ import { useUsersContext } from '../../hooks/useUsersContext'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import AdminHeader from '../../components/AdminHeader'
 import AdminSidebar from '../../components/AdminSidebar'
+import AdminSidebarCollapsible from '../../components/AdminSidebarCollapsible'
 import UsersDetails from './UsersDetails'
 
 function Users() {
@@ -13,6 +14,12 @@ function Users() {
 
   const toggleEditUserVisibility = () => {
     setEditUserVisible(!isEditUserVisible)
+  }
+
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true)
+
+  const handleHamburgerClick = () => {
+   setIsSidebarVisible(!isSidebarVisible);
   }
   
   useEffect(() => {
@@ -38,11 +45,12 @@ function Users() {
     <>
     <div className="main-wrapper">
       <div>
-        <AdminHeader />
+        <AdminHeader onHamburgerClick={handleHamburgerClick}/>
       </div>
       <div className="sub-wrapper">
-        <div>
-          <AdminSidebar />
+        <div className='sidebars'>
+          {isSidebarVisible && <AdminSidebar />}
+          {!isSidebarVisible && <AdminSidebarCollapsible />}
         </div>
         <div className='content'>
           <div className='area'>

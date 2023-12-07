@@ -1,5 +1,6 @@
-import React, {useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import AdminSidebar from '../../components/AdminSidebar'
+import AdminSidebarCollapsible from '../../components/AdminSidebarCollapsible'
 import AdminHeader from '../../components/AdminHeader'
 import { useDepartmentsContext } from '../../hooks/useDepartmentsContext'
 import { useAuthContext } from '../../hooks/useAuthContext'
@@ -8,6 +9,13 @@ import DepartmentsDetails from './DepartmentsDetails'
 
 function Departments() {
   const {departments , dispatch} = useDepartmentsContext()
+
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true)
+
+  const handleHamburgerClick = () => {
+   setIsSidebarVisible(!isSidebarVisible);
+  }
+  
 
   const { user } = useAuthContext()
 
@@ -32,11 +40,12 @@ function Departments() {
     <>
     <div className="main-wrapper">
       <div>
-        <AdminHeader />
+        <AdminHeader onHamburgerClick={handleHamburgerClick}/>
       </div>
       <div className="sub-wrapper">
-        <div>
-          <AdminSidebar />
+       <div className='sidebars'>
+          {isSidebarVisible && <AdminSidebar />}
+          {!isSidebarVisible && <AdminSidebarCollapsible />}
         </div>
         <div className='content'>
           <div className="area">

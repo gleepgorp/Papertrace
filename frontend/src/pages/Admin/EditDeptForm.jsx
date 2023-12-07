@@ -8,6 +8,7 @@ import { useAuthContext } from '../../hooks/useAuthContext'
 import { format, parseISO } from 'date-fns'
 import AdminHeader from '../../components/AdminHeader'
 import AdminSidebar from '../../components/AdminSidebar'
+import AdminSidebarCollapsible from '../../components/AdminSidebarCollapsible'
 
 function EditDeptForm() {
   const { user } = useAuthContext()
@@ -19,6 +20,12 @@ function EditDeptForm() {
   const [error, setError] = useState(null)
   const [departmentName, setDepartmentName] = useState('')
   const [emptyFields, setEmptyFields] = useState([])
+
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true)
+
+  const handleHamburgerClick = () => {
+   setIsSidebarVisible(!isSidebarVisible);
+  }
 
    // fetches data with id for editing
   useEffect(() => {
@@ -112,11 +119,12 @@ function EditDeptForm() {
       <>
       <div className="main-wrapper">
         <div>
-          <AdminHeader />
+          <AdminHeader onHamburgerClick={handleHamburgerClick}/>
         </div>
         <div className="sub-wrapper">
-          <div>
-            <AdminSidebar />
+          <div className='sidebars'>
+            {isSidebarVisible && <AdminSidebar />}
+            {!isSidebarVisible && <AdminSidebarCollapsible />}
           </div>
           <div className="content">
             <form 

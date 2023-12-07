@@ -8,27 +8,52 @@ import { useUsersContext } from '../hooks/useUsersContext'
 import {Link, useLocation} from 'react-router-dom'
 import MainLogo from '../../public/MainLogo.svg'
 import useLogout from '../hooks/useLogout'
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
-function AdminHeader({ onAddUserClick, isAddUserVisible, onAddDeptClick, isAddDeptVisible }) {
+function AdminHeader({ onAddUserClick, isAddUserVisible, onAddDeptClick, isAddDeptVisible, onHamburgerClick  }) {
+
   const { logout } = useLogout()
   const { user } = useAuthContext()
   const location = useLocation();
   const isUsersPath = location.pathname.includes('/users')
   const iseDeptPath = location.pathname.includes('/departments')
 
+  const [modal, setModal] = useState(false)
+  const modalRef = useRef()
+
+  const toggleModal = () => { 
+    setModal(!modal);
+  }
+
   const handleClick = () => {
     logout()
   }
 
+  useEffect(() => {
+    let handler = (e) => {
+      if (!modalRef.current.contains(e.target)) {
+        setModal(false);
+      } 
+    }
+
+    document.addEventListener("mousedown", handler)
+    
+    // detach event listener
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    }
+  }, [])
 
   return (
     <>
+    {user && (
     <div id="header">
       <div id="left-and-middle">
         <div id="left-section">
           <div id="left-wrapper">
-            <button><RxIcon.RxHamburgerMenu/></button>
+            <div>
+              <button onClick={onHamburgerClick}><RxIcon.RxHamburgerMenu/></button>
+            </div>
             <Link to='/'>
               <img id='main-logo' src={MainLogo} />
             </Link>
@@ -59,25 +84,53 @@ function AdminHeader({ onAddUserClick, isAddUserVisible, onAddDeptClick, isAddDe
                 </Link>
               )}
             </div>
-          {user && (
             <div className='user-and-logout-section'>
-              <div>
-                <span>
-                  {user.user.firstname}{` ${user.user.lastname}`}
-                </span>
-              </div>
-              <button 
-                className='logout-button'
-                onClick={handleClick}> 
-                <FiIcon.FiLogOut  />
-              </button>
             </div>
+        <div onClick={toggleModal} ref={modalRef} id="account-initials">
+          <span>
+            {user.user.firstname.charAt(0).toUpperCase()}
+            {user.user.lastname.charAt(0).toUpperCase()}
+          </span>
+          {modal && (
+            <div className='modal'>
+            <div className="modal-wrapper">
+              <div className="modal-header">
+                <div className='modal-name'>
+                  {`Hi ${user.user.firstname}!`}
+                </div>
+                <div className='modal-role'>
+                  {`${user.user.role}`}
+                </div>
+                <div>
+                  {`${user.user.deptAssigned} Department`}
+                </div>
+              </div>
+              <div className='modal-btn-wrapper'>
+                <div className='view-profile'>
+                  <div>
+                    <PiIcon.PiUserCircle fontSize={20}/>
+                  </div>
+                  <div>
+                    View profile
+                  </div>
+                </div>
+                <div onClick={handleClick} className='logout'>
+                  <div>
+                    <FiIcon.FiLogOut 
+                    fontSize={20}/>
+                  </div>
+                  <div>
+                    Sign out
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           )}
-        <div id="account-initials">
-          <span>AA</span>
         </div>
       </div>
     </div>
+    )}
    </>
   )
 }

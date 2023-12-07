@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import * as IoIcon from 'react-icons/io5'
 import AdminHeader from '../../components/AdminHeader'
 import AdminSidebar from '../../components/AdminSidebar'
+import AdminSidebarCollapsible from '../../components/AdminSidebarCollapsible'
 import { useParams, useNavigate, Link, Form } from 'react-router-dom'
 import { useUsersContext } from '../../hooks/useUsersContext'
 import { useAuthContext } from '../../hooks/useAuthContext'
@@ -22,6 +23,12 @@ function EditUserForm() {
   const [uclmID, setUclmID] = useState('')
   const [campus, setCampus] = useState('')
   const [error, setError] = useState(null)
+
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true)
+
+  const handleHamburgerClick = () => {
+   setIsSidebarVisible(!isSidebarVisible);
+  }
 
   // fetch data with id for editing
   useEffect(() => {
@@ -119,11 +126,12 @@ function EditUserForm() {
     <> 
     <div  className="main-wrapper">
       <div>
-        <AdminHeader />
+        <AdminHeader onHamburgerClick={handleHamburgerClick}/>
       </div>
       <div className="sub-wrapper">
-        <div>
-          <AdminSidebar />
+        <div className='sidebars'>
+            {isSidebarVisible && <AdminSidebar />}
+            {!isSidebarVisible && <AdminSidebarCollapsible />}
         </div>
         <div className="content">
         {users && users.map((user) => (

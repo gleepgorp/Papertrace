@@ -4,6 +4,7 @@ import { Form, Link, useNavigate } from 'react-router-dom'
 import { useDepartmentsContext } from '../../hooks/useDepartmentsContext'
 import AdminHeader from '../../components/AdminHeader'
 import AdminSidebar from '../../components/AdminSidebar'
+import AdminSidebarCollapsible from '../../components/AdminSidebarCollapsible'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import * as IoIcon from "react-icons/io5";
 
@@ -16,6 +17,12 @@ function AddDeptForm() {
 
   const [error, setError] = useState(null)
   const [departmentName, setDepartmentName] = useState('')
+
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true)
+
+  const handleHamburgerClick = () => {
+   setIsSidebarVisible(!isSidebarVisible);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -68,11 +75,12 @@ function AddDeptForm() {
     <>
       <div className="main-wrapper">
         <div>
-          <AdminHeader />
+          <AdminHeader onHamburgerClick={handleHamburgerClick}/>
         </div>
         <div className="sub-wrapper">
-          <div>
-            <AdminSidebar />
+          <div className='sidebars'>
+            {isSidebarVisible && <AdminSidebar />}
+            {!isSidebarVisible && <AdminSidebarCollapsible />}
           </div>
           <div className="content">
             <div className="add-user-form-wrapper">
