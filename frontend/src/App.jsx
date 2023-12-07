@@ -55,7 +55,6 @@ function App() {
           <Route path='*' element={<ErrorPage />} />
 
           {/* public routes */}
-          <Route path='/' element={!user ? <Home /> : <Navigate to='/login' />} />
           <Route path='/login' element={!user ? <Login /> : <Navigate to='/' />}/>
           <Route path='/forgot-password' element={!user ? <ForgotPass /> : <Navigate to='/' />}/>
 
