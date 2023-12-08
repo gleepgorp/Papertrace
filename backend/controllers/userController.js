@@ -31,9 +31,15 @@ const createToken = (_id) => {
 
 // GET all users
 const getUsers = async (req, res) => {
-  const users = await User.find({}).sort({createdAt: -1})
+  const role = req.user.role
+  const user_id = req.user._id
 
-  res.status(200).json(users)
+  if (role === 'DEPT-HEAD') {
+    query = { user_id: user_id }
+  }
+
+  const users = await User.find({user_id}).sort({ createdAt: -1 });
+  res.status(200).json(users);
 }
 
 // GET a single user
@@ -89,6 +95,8 @@ const createUser = async (req, res) => {
 
   // add doc to db
   try {
+    const user_id = req.user._id
+
     // .create to create doc in db
     const user = await User.signup(
       firstname,
@@ -98,7 +106,8 @@ const createUser = async (req, res) => {
       password,
       deptAssigned,
       campus,
-      role
+      role,
+      user_id
     )
 
     // creating jwt token 

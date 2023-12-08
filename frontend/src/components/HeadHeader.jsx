@@ -15,7 +15,8 @@ function AdminHeader({ onAddUserClick, isAddUserVisible, onHamburgerClick  }) {
   const { logout } = useLogout()
   const { user } = useAuthContext()
   const location = useLocation();
-  const isUsersPath = location.pathname.includes('/head-home')
+  const isUsersPath = location.pathname.includes('/users')
+  
 
   const [modal, setModal] = useState(false)
   const modalRef = useRef()

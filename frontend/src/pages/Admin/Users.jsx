@@ -64,12 +64,14 @@ function Users() {
                   <th>Date created</th>
                   <th></th>
                 </tr>
-                  {users && users.map((head) => (
-                    <UsersDetails
-                      onEditUserClick={toggleEditUserVisibility}
-                      key={head._id} 
-                      head={head}/>
-                  ))}
+              {users && users.map((head) => (
+                head.role !== 'ADMIN' ? 
+                <UsersDetails
+                  onEditUserClick={toggleEditUserVisibility}
+                  key={head._id} 
+                  head={head}/>
+                  : null
+              ))}
               </table>
             </div>
           </div>

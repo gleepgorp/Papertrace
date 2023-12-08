@@ -103,13 +103,16 @@ function AdminHeader({ onAddUserClick, isAddUserVisible, onAddDeptClick, isAddDe
             <div className='modal'>
             <div className="modal-wrapper">
               <div className="modal-header">
+                <div div className="modal-profile">
+                  <PiIcon.PiUserCircleFill color='gray' font-size={'3em'}/>
+                </div>
                 <div className='modal-name'>
                   {`Hi ${user.user.firstname}!`}
                 </div>
                 <div className='modal-role'>
                   {`${user.user.role}`}
                 </div>
-                <div>
+                <div className='modal-dept'>
                   {`${user.user.deptAssigned} Department`}
                 </div>
               </div>

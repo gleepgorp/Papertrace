@@ -16,9 +16,15 @@ import EditUserForm from './pages/Admin/EditUserForm'
 import Departments from './pages/Admin/Departments'
 import AddDeptForm from './pages/Admin/AddDeptForm'
 import EditDeptForm from './pages/Admin/EditDeptForm'
+
 // head routes
 import HeadInbox from './pages/Head/HeadInbox'
 import HeadUsers from './pages/Head/HeadUsers'
+import HeadAddUserForm from './pages/Head/HeadAddUserForm'
+import HeadEditUserForm from './pages/Head/HeadEditUserForm'
+
+//user routes
+import UserInbox from './pages/Users/UsersInbox'
 
 import RequireAuth from './components/RequireAuth'
 import { Routes, Route, Navigate } from 'react-router-dom'
@@ -26,7 +32,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import './index.scss'
 
 function App() {
-  const {user, role} = useAuthContext()
+  const {user,  role} = useAuthContext()
   const {dispatch} = useUsersContext()
 
   useEffect(() => {
@@ -79,11 +85,17 @@ function App() {
               <Route path='/' element={user ? <HeadInbox /> : <Navigate to='/login'/>}/>
               <Route path='/inbox' element={user ? <HeadInbox /> : <Navigate to='/login'/>}/>
               <Route path='/users' element={user ? <HeadUsers /> : <Navigate to='/login'/>}/>
+              <Route path='/users/add' element={user ? <HeadAddUserForm /> : <Navigate to='/login'/>}/>
+              <Route path='/users/edit/:id' element={user ? <HeadEditUserForm /> : <Navigate to='/login'/>}/>
             </>
           )}
 
           {/* working scholar/staff routes */}
-
+          {role === 'STAFF' || role === 'WORKING-SCHOLAR' && (
+            <>
+              <Route path='/' element={user ? <UserInbox /> : <Navigate to='/login'/>}/>
+            </>
+          )}  
         </Route>
       </Routes>
     </>

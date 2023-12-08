@@ -1,21 +1,19 @@
-import React, { useState } from 'react'
-import Select from 'react-select'
-import * as IoIcon from "react-icons/io5";
-import AdminHeader from '../../components/AdminHeader'
-import AdminSidebar from '../../components/AdminSidebar'
-import AdminSidebarCollapsible from '../../components/AdminSidebarCollapsible'
 import { Link, Form, useNavigate } from 'react-router-dom';
 import { useUsersContext } from '../../hooks/useUsersContext'
 import { useAuthContext } from '../../hooks/useAuthContext'
+import HeadSidebar from '../../components/HeadSidebar'
+import HeadHeader from '../../components/HeadHeader'
+import * as IoIcon from "react-icons/io5";  
+import React, { useState } from 'react'
+import Select from 'react-select'
 
-
-function AddUserForm() {
+function HeadAddUserForm() {
   const { user } = useAuthContext()
 
   const navigate = useNavigate()
   const { dispatch } = useUsersContext()
-  const [deptAssigned, setDeptAssigned] = useState('')
-  const [role, setRole] = useState('DEPT-HEAD')
+  const [deptAssigned, setDeptAssigned] = useState(user.user.deptAssigned)
+  const [role, setRole] = useState('USER')
   const [firstname, setFirstname] = useState('')
   const [lastname, setLastname] = useState('')
   const [username, setUsername] = useState('')
@@ -24,12 +22,6 @@ function AddUserForm() {
   const [campus, setCampus] = useState('UCLM')
   const [error, setError] = useState(null)
   const [emptyFields, setEmptyFields] = useState([])
-
-  const [isSidebarVisible, setIsSidebarVisible] = useState(true)
-
-  const handleHamburgerClick = () => {
-   setIsSidebarVisible(!isSidebarVisible);
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -78,29 +70,22 @@ function AddUserForm() {
     }
   }
 
-  const departments = [
-    { value: 'Nursing', label: 'Nursing' },
-    { value: 'Accounting', label: 'Accounting' },
-    { value: 'Cashier', label: 'Cashier' },
-    { value: 'Records', label: 'Records' },
-    { value: 'Engineering', label: 'Engineering' },
-    { value: 'CADS', label: 'CADS' },
-    { value: 'Maritime', label: 'Maritime' },
-    { value: 'CCS', label: 'CCS' },
+  const options = [
+    { value: 'WORKING-SCHOLAR', label: 'WORKING-SCHOLAR' },
+    { value: 'STAFF', label: 'STAFF' },
   ]
 
-  const sortedDepartments = [...departments].sort((a, b) => a.label.localeCompare(b.label));
+  const sortedOptions = [...options].sort((a, b) => a.label.localeCompare(b.label));
 
   return (
     <>
     <div className="main-wrapper">
       <div>
-        <AdminHeader onHamburgerClick={handleHamburgerClick}/>
+        <HeadHeader />
       </div>
     <div className="sub-wrapper">
       <div className='sidebars'>
-          {isSidebarVisible && <AdminSidebar />}
-          {!isSidebarVisible && <AdminSidebarCollapsible />}
+        <HeadSidebar />
       </div>
     <div className='content'>
       <div className="add-user-form-wrapper">
@@ -110,7 +95,7 @@ function AddUserForm() {
                 <Link to='/users'><IoIcon.IoArrowBackSharp /></Link>
               </div>
               <div>
-                <h3>Add a new head</h3>
+                <h3>Add a new user</h3>
               </div>
             </div>
             <div id="dept-head-and-role">
@@ -123,15 +108,14 @@ function AddUserForm() {
               <div className='edit-content-border'>
                 <div className='edit-content'>
                   <>
+                    <label>Role</label>
+                    <Select 
+                      options={sortedOptions}
+                      onChange={(selectedOption) => 
+                      setRole(selectedOption.value)}
+                      value={sortedOptions.find(option => option.value === role)}
+                    />
                     <div className='edit-input-wrapper'>  
-                      <div className='select'>
-                        <label>Department</label>
-                        <Select 
-                          options={sortedDepartments}
-                          onChange={(selectedOption) => setDeptAssigned(selectedOption.value)}
-                          value={sortedDepartments.find(option => option.value === deptAssigned)}
-                          />
-                      </div>
                       <div className="two-input-inline">
                         <div className='input-flex-one'>
                           <label>Campus</label>
@@ -143,12 +127,12 @@ function AddUserForm() {
                             />
                         </div>
                         <div className='input-flex-one'>
-                          <label>Role</label>
+                          <label>Dept. Assigned</label>
                           <input  
                             type="text"
+                            onChange={(e) => setDeptAssigned(e.target.value)}
+                            value={deptAssigned}
                             disabled={true}
-                            onChange={(e) => setRole(e.target.value)}
-                            value={role}
                             />
                         </div>
                       </div>
@@ -223,4 +207,4 @@ function AddUserForm() {
   )
 }
 
-export default AddUserForm
+export default HeadAddUserForm

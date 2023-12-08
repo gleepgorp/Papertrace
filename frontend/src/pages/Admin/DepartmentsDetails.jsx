@@ -49,7 +49,7 @@ function DepartmentsDetails({department}) {
       <td>
       {users &&
         users.map((user) =>
-          user.deptAssigned === department.departmentName ? (
+          user.deptAssigned === department.departmentName && user.role === 'DEPT-HEAD' ? (
             <span key={user._id}>
               {user.firstname}
               {` ${user.lastname}`}

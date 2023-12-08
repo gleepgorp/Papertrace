@@ -38,10 +38,14 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  user_id: {
+    type: String,
+    required: true
+  }
 }, {timestamps: true})
 
 // static sign up for dept head user/ users
-userSchema.statics.signup = async function (firstname, lastname, username, uclmID, password, deptAssigned, campus, role) {
+userSchema.statics.signup = async function (firstname, lastname, username, uclmID, password, deptAssigned, campus, role, user_id) {
 
   if (!username || !password) {
     throw Error('All fields must be filled')
@@ -74,7 +78,8 @@ userSchema.statics.signup = async function (firstname, lastname, username, uclmI
     password: hash,
     deptAssigned,
     campus,
-    role
+    role,
+    user_id
   })
 
   return user
