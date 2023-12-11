@@ -91,6 +91,9 @@ function AdminHeader({ onAddUserClick, isAddUserVisible, onHamburgerClick  }) {
             <div className='modal'>
             <div className="modal-wrapper">
               <div className="modal-header">
+                <div div className="modal-profile">
+                  <PiIcon.PiUserCircleFill color='gray' font-size={'3em'}/>
+                </div>
                 <div className='modal-name'>
                   {`Hi ${user.user.firstname}!`}
                 </div>

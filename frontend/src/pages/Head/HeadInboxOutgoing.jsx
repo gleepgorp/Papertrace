@@ -33,7 +33,7 @@ function HeadInbox() {
               <nav className='border-radius-none'> 
                 <li>
                   <NavLink
-                    to='incoming'>
+                    to='/inbox/incoming'>
                     <GrIcon.GrDocumentDownload />
                   <div className='span-wrapper'>
                     <span>Incoming</span>

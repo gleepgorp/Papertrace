@@ -1,13 +1,11 @@
 import HeadHeader from '../../components/HeadHeader'
 import HeadSidebar from '../../components/HeadSidebar'
-import HeadInboxDetails from './HeadInboxDetails'
+import HeadIncomingDetails from './HeadIncomingDetails'
 import { NavLink, Outlet } from 'react-router-dom'
 import * as GrIcon from 'react-icons/gr'
 
-function HeadInbox() {
-
+function HeadIncoming() {
   return (
-    <>
     <div className='main-wrapper'>
       <div>
         <HeadHeader />
@@ -21,7 +19,8 @@ function HeadInbox() {
             <div className='inbox-header'>
               <nav className='border-radius-top-left'>
                 <li>
-                  <NavLink>
+                  <NavLink
+                    to='/inbox/outgoing'>
                       <GrIcon.GrDocumentUpload />
                     <div className='span-wrapper'>
                       <span>Outgoing</span>
@@ -32,8 +31,7 @@ function HeadInbox() {
               </nav>
               <nav className='border-radius-none'> 
                 <li>
-                  <NavLink
-                    to='incoming'>
+                  <NavLink>
                     <GrIcon.GrDocumentDownload />
                   <div className='span-wrapper'>
                     <span>Incoming</span>
@@ -46,7 +44,7 @@ function HeadInbox() {
             <div className="inbox-outlet">
               <div className="inbox-outlet-wrapper">
                 <div className="inbox-inbox">
-                  <HeadInboxDetails />
+                  <HeadIncomingDetails />
                 </div>
               </div>
             </div>
@@ -54,8 +52,7 @@ function HeadInbox() {
         </div>
       </div>
     </div>
-    </>
   )
 }
 
-export default HeadInbox
+export default HeadIncoming

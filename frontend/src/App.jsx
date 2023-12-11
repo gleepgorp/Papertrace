@@ -19,9 +19,14 @@ import EditDeptForm from './pages/Admin/EditDeptForm'
 
 // head routes
 import HeadInbox from './pages/Head/HeadInbox'
+import HeadIncoming from './pages/Head/HeadIncoming'
+import HeadInboxOutgoing from './pages/Head/HeadInboxOutgoing'
 import HeadUsers from './pages/Head/HeadUsers'
 import HeadAddUserForm from './pages/Head/HeadAddUserForm'
+import HeadSendDocs from './pages/Head/HeadSendDocs'
 import HeadEditUserForm from './pages/Head/HeadEditUserForm'
+import HeadAcceptedDocs from './pages/Head/HeadAcceptedDocs'
+import HeadSent from './pages/Head/HeadSent'
 
 //user routes
 import UserInbox from './pages/Users/UsersInbox'
@@ -87,6 +92,11 @@ function App() {
               <Route path='/users' element={user ? <HeadUsers /> : <Navigate to='/login'/>}/>
               <Route path='/users/add' element={user ? <HeadAddUserForm /> : <Navigate to='/login'/>}/>
               <Route path='/users/edit/:id' element={user ? <HeadEditUserForm /> : <Navigate to='/login'/>}/>
+              <Route path='/send' element={user ? <HeadSendDocs /> : <Navigate to='/login' />}/>
+              <Route path='/inbox/incoming' element={user ? <HeadIncoming /> : <Navigate to='/login' />}/>
+              <Route path='/inbox/outgoing' element={user ? <HeadInboxOutgoing /> : <Navigate to='/login' />}/>
+              <Route path='/accepted-docs' element={user ? <HeadAcceptedDocs /> : <Navigate to='/login' />}/>
+              <Route path='/sent' element={user ? <HeadSent /> : <Navigate to='/login' />}/>
             </>
           )}
 
